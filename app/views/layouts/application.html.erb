@@ -14,6 +14,14 @@
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
 
+    <% if current_account %>
+      <p><%= "Logged in as #{current_account.email}" %></p>
+      <%= link_to 'Log Out', destroy_account_session_path, method: 'delete' %> or
+      <%= link_to 'Delete Account', cancel_account_registration_path %>
+    <% else %>
+      <%= link_to 'Log In', new_account_session_path %> or
+      <%= link_to 'Sign Up', new_account_registration_path %>
+    <% end %>
     <%= yield %>
   </body>
 </html>
