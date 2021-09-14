@@ -16,6 +16,7 @@
 
     <% if account_signed_in? %>
       <p><%= "Logged in as #{current_account.email}" %></p>
+      <%= link_to 'Show Account', account_path(current_account) %> or
       <%= link_to 'Log Out', destroy_account_session_path, method: 'delete' %> or
       <%= link_to 'Delete Account', cancel_account_registration_path %>
     <% else %>
