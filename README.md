@@ -164,3 +164,10 @@
     - config/environments/production.rb で　`config.log_level = :warn` とする
   - APIモードにもある程度対応しているが、完全ではない
     - APIモードの場合cookieによるデフォルトの認証方式が使えない。Basic認証は使える（別途設定が必要）
+  
+## パスワードリセット等のメールを送れる様にするには
+- まず、config/environments 配下の各環境の設定で、`config.action_mailer.raise_delivery_errors`をtrueにして、メール配信に失敗したときに例外が発生する様にしておく
+- 例えばGmailのアドレスを使う場合は、[Railsガイド](https://railsguides.jp/action_mailer_basics.html#gmail%E7%94%A8%E3%81%AEaction-mailer%E8%A8%AD%E5%AE%9A) にある様に設定を追加するだけでOK
+  - ただし、Gmailで2段階認証を有効にしている場合は別途「アプリパスワード」を発行して使用する必要がある（それも含めてガイドに記載あり）
+
+
