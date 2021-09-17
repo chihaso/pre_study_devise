@@ -47,9 +47,16 @@
     - サインイン回数とか、タイムスタンプとか、IPアドレスをカラムに保持する（前回のものと、現在のもの）
 - [Timeoutable](https://www.rubydoc.info/github/heartcombo/devise/master/Devise/Models/Timeoutable)
     - セッションの有効期限が過ぎているかどうかチェックして、過ぎてたらもう一度認証を要求する（サインインページにリダイレクトする）
-- [Validatabl](https://www.rubydoc.info/github/heartcombo/devise/master/Devise/Models/Validatable)
-    - email と passwordに関するバリデーションを作成する。
+- [Validatable](https://www.rubydoc.info/github/heartcombo/devise/master/Devise/Models/Validatable)
+    - これを有効にすることで、email と passwordに関するバリデーションがかけられる。
     - emailの存在、一意性、フォーマットと、passwordの存在、確認、長さについては自動的にバリデーションがかけられており、それ以外のバリデーションの追加も可能
+    - 内部的には普通にRailsのバリデーションヘルパーを使用している ([source](https://github.com/heartcombo/devise/blob/5d5636f03ac19e8188d99c044d4b5e90124313af/lib/devise/models/validatable.rb#L26-L44))
+    - > Validatable adds the following options to devise_for:
+        - 上記間違ってる気がする。実際にはroutes.rbの`devise_for`ではなく、モデル内の`devise`に`email_regexp`、`password_length`のオプションを設定できる様になる
+        - コントリビュートチャンス？
+            - 他のモジュールのコメントにも同様の記載あり（詳細は未確認） 
+    - [`Devise::Models.config`](https://github.com/heartcombo/devise/blob/c82e4cf47b02002b2fd7ca31d441cf1043fc634c/lib/devise/models.rb#L31)によりアクセサを追加している
+        - 実際にはメソッドを追加している
 - [Lockable](https://www.rubydoc.info/github/heartcombo/devise/master/Devise/Models/Lockable) 
     - 所定の回数パスワードを間違えたらロックをかける
     - ロック解除の方法は２通りあり、一つはロック解除用のアドレスをメールで送信する方法、もう一つは所定の時間が経過したらロック解除する方法。両方設定することも可能。
