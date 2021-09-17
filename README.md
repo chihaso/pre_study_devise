@@ -118,7 +118,7 @@
 - サインイン後やパスワード更新後のタイミングなどのリダイレクト先は、デフォルトでモデル名_root_pathがあればそこへ、なければroot_pathへリダイレクトする
     - そのため自分でrootを設定しておく必要がある
     - after_sign_in_path_for とかをoverrideすればリダイレクト時のフックをカスタマイズ可能
-- モデル内のdeviseメソッドには、各モジュールの他streches: として各種オプションを設定可能（詳細はinitializerを参照）
+- モデル内のdeviseメソッドには、各モジュールの他streches: など各種オプションを設定可能（詳細はinitializerを参照）
 
 ### strong parameter
 - deviseが許可しているパラメータセットは下記3種
